@@ -1,0 +1,200 @@
+
+
+(myenv) C:\Users\SUBASH\Desktop\Yolo\yolov7>python train.py --workers 4 --device 0 --batch-size 4 --data data/custom.yaml --img 640 640 --cfg cfg/training/yolov7.yaml --weights '' --name yolov7 --hyp data/hyp.scratch.p5.yaml --epochs 10
+YOLOR  v0.1-128-ga207844 torch 2.1.1+cu118 CUDA:0 (NVIDIA GeForce GTX 1650, 4095.6875MB)
+
+Namespace(weights="''", cfg='cfg/training/yolov7.yaml', data='data/custom.yaml', hyp='data/hyp.scratch.p5.yaml', epochs=10, batch_size=4, img_size=[640, 640], rect=False, resume=False, nosave=False, notest=False, noautoanchor=False, evolve=False, bucket='', cache_images=False, image_weights=False, device='0', multi_scale=False, single_cls=False, adam=False, sync_bn=False, local_rank=-1, workers=4, project='runs/train', entity=None, name='yolov7', exist_ok=False, quad=False, linear_lr=False, label_smoothing=0.0, upload_dataset=False, bbox_interval=-1, save_period=-1, artifact_alias='latest', freeze=[0], v5_metric=False, world_size=1, global_rank=-1, save_dir='runs\\train\\yolov76', total_batch_size=4)
+tensorboard: Start with 'tensorboard --logdir runs/train', view at http://localhost:6006/
+hyperparameters: lr0=0.01, lrf=0.1, momentum=0.937, weight_decay=0.0005, warmup_epochs=3.0, warmup_momentum=0.8, warmup_bias_lr=0.1, box=0.05, cls=0.3, cls_pw=1.0, obj=0.7, obj_pw=1.0, iou_t=0.2, anchor_t=4.0, fl_gamma=0.0, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, degrees=0.0, translate=0.2, scale=0.9, shear=0.0, perspective=0.0, flipud=0.0, fliplr=0.5, mosaic=1.0, mixup=0.15, copy_paste=0.0, paste_in=0.15, loss_ota=1
+wandb: Install Weights & Biases for YOLOR logging with 'pip install wandb' (recommended)
+
+                 from  n    params  module                                  arguments
+  0                -1  1       928  models.common.Conv                      [3, 32, 3, 1]
+  1                -1  1     18560  models.common.Conv                      [32, 64, 3, 2]
+  2                -1  1     36992  models.common.Conv                      [64, 64, 3, 1]
+  3                -1  1     73984  models.common.Conv                      [64, 128, 3, 2]
+  4                -1  1      8320  models.common.Conv                      [128, 64, 1, 1]
+  5                -2  1      8320  models.common.Conv                      [128, 64, 1, 1]
+  6                -1  1     36992  models.common.Conv                      [64, 64, 3, 1]
+  7                -1  1     36992  models.common.Conv                      [64, 64, 3, 1]
+  8                -1  1     36992  models.common.Conv                      [64, 64, 3, 1]
+  9                -1  1     36992  models.common.Conv                      [64, 64, 3, 1]
+ 10  [-1, -3, -5, -6]  1         0  models.common.Concat                    [1]
+ 11                -1  1     66048  models.common.Conv                      [256, 256, 1, 1]
+ 12                -1  1         0  models.common.MP                        []
+ 13                -1  1     33024  models.common.Conv                      [256, 128, 1, 1]
+ 14                -3  1     33024  models.common.Conv                      [256, 128, 1, 1]
+ 15                -1  1    147712  models.common.Conv                      [128, 128, 3, 2]
+ 16          [-1, -3]  1         0  models.common.Concat                    [1]
+ 17                -1  1     33024  models.common.Conv                      [256, 128, 1, 1]
+ 18                -2  1     33024  models.common.Conv                      [256, 128, 1, 1]
+ 19                -1  1    147712  models.common.Conv                      [128, 128, 3, 1]
+ 20                -1  1    147712  models.common.Conv                      [128, 128, 3, 1]
+ 21                -1  1    147712  models.common.Conv                      [128, 128, 3, 1]
+ 22                -1  1    147712  models.common.Conv                      [128, 128, 3, 1]
+ 23  [-1, -3, -5, -6]  1         0  models.common.Concat                    [1]
+ 24                -1  1    263168  models.common.Conv                      [512, 512, 1, 1]
+ 25                -1  1         0  models.common.MP                        []
+ 26                -1  1    131584  models.common.Conv                      [512, 256, 1, 1]
+ 27                -3  1    131584  models.common.Conv                      [512, 256, 1, 1]
+ 28                -1  1    590336  models.common.Conv                      [256, 256, 3, 2]
+ 29          [-1, -3]  1         0  models.common.Concat                    [1]
+ 30                -1  1    131584  models.common.Conv                      [512, 256, 1, 1]
+ 31                -2  1    131584  models.common.Conv                      [512, 256, 1, 1]
+ 32                -1  1    590336  models.common.Conv                      [256, 256, 3, 1]
+ 33                -1  1    590336  models.common.Conv                      [256, 256, 3, 1]
+ 34                -1  1    590336  models.common.Conv                      [256, 256, 3, 1]
+ 35                -1  1    590336  models.common.Conv                      [256, 256, 3, 1]
+ 36  [-1, -3, -5, -6]  1         0  models.common.Concat                    [1]
+ 37                -1  1   1050624  models.common.Conv                      [1024, 1024, 1, 1]
+ 38                -1  1         0  models.common.MP                        []
+ 39                -1  1    525312  models.common.Conv                      [1024, 512, 1, 1]
+ 40                -3  1    525312  models.common.Conv                      [1024, 512, 1, 1]
+ 41                -1  1   2360320  models.common.Conv                      [512, 512, 3, 2]
+ 42          [-1, -3]  1         0  models.common.Concat                    [1]
+ 43                -1  1    262656  models.common.Conv                      [1024, 256, 1, 1]
+ 44                -2  1    262656  models.common.Conv                      [1024, 256, 1, 1]
+ 45                -1  1    590336  models.common.Conv                      [256, 256, 3, 1]
+ 46                -1  1    590336  models.common.Conv                      [256, 256, 3, 1]
+ 47                -1  1    590336  models.common.Conv                      [256, 256, 3, 1]
+ 48                -1  1    590336  models.common.Conv                      [256, 256, 3, 1]
+ 49  [-1, -3, -5, -6]  1         0  models.common.Concat                    [1]
+ 50                -1  1   1050624  models.common.Conv                      [1024, 1024, 1, 1]
+ 51                -1  1   7609344  models.common.SPPCSPC                   [1024, 512, 1]
+ 52                -1  1    131584  models.common.Conv                      [512, 256, 1, 1]
+ 53                -1  1         0  torch.nn.modules.upsampling.Upsample    [None, 2, 'nearest']
+ 54                37  1    262656  models.common.Conv                      [1024, 256, 1, 1]
+ 55          [-1, -2]  1         0  models.common.Concat                    [1]
+ 56                -1  1    131584  models.common.Conv                      [512, 256, 1, 1]
+ 57                -2  1    131584  models.common.Conv                      [512, 256, 1, 1]
+ 58                -1  1    295168  models.common.Conv                      [256, 128, 3, 1]
+ 59                -1  1    147712  models.common.Conv                      [128, 128, 3, 1]
+ 60                -1  1    147712  models.common.Conv                      [128, 128, 3, 1]
+ 61                -1  1    147712  models.common.Conv                      [128, 128, 3, 1]
+ 62[-1, -2, -3, -4, -5, -6]  1         0  models.common.Concat                    [1]
+ 63                -1  1    262656  models.common.Conv                      [1024, 256, 1, 1]
+ 64                -1  1     33024  models.common.Conv                      [256, 128, 1, 1]
+ 65                -1  1         0  torch.nn.modules.upsampling.Upsample    [None, 2, 'nearest']
+ 66                24  1     65792  models.common.Conv                      [512, 128, 1, 1]
+ 67          [-1, -2]  1         0  models.common.Concat                    [1]
+ 68                -1  1     33024  models.common.Conv                      [256, 128, 1, 1]
+ 69                -2  1     33024  models.common.Conv                      [256, 128, 1, 1]
+ 70                -1  1     73856  models.common.Conv                      [128, 64, 3, 1]
+ 71                -1  1     36992  models.common.Conv                      [64, 64, 3, 1]
+ 72                -1  1     36992  models.common.Conv                      [64, 64, 3, 1]
+ 73                -1  1     36992  models.common.Conv                      [64, 64, 3, 1]
+ 74[-1, -2, -3, -4, -5, -6]  1         0  models.common.Concat                    [1]
+ 75                -1  1     65792  models.common.Conv                      [512, 128, 1, 1]
+ 76                -1  1         0  models.common.MP                        []
+ 77                -1  1     16640  models.common.Conv                      [128, 128, 1, 1]
+ 78                -3  1     16640  models.common.Conv                      [128, 128, 1, 1]
+ 79                -1  1    147712  models.common.Conv                      [128, 128, 3, 2]
+ 80      [-1, -3, 63]  1         0  models.common.Concat                    [1]
+ 81                -1  1    131584  models.common.Conv                      [512, 256, 1, 1]
+ 82                -2  1    131584  models.common.Conv                      [512, 256, 1, 1]
+ 83                -1  1    295168  models.common.Conv                      [256, 128, 3, 1]
+ 84                -1  1    147712  models.common.Conv                      [128, 128, 3, 1]
+ 85                -1  1    147712  models.common.Conv                      [128, 128, 3, 1]
+ 86                -1  1    147712  models.common.Conv                      [128, 128, 3, 1]
+ 87[-1, -2, -3, -4, -5, -6]  1         0  models.common.Concat                    [1]
+ 88                -1  1    262656  models.common.Conv                      [1024, 256, 1, 1]
+ 89                -1  1         0  models.common.MP                        []
+ 90                -1  1     66048  models.common.Conv                      [256, 256, 1, 1]
+ 91                -3  1     66048  models.common.Conv                      [256, 256, 1, 1]
+ 92                -1  1    590336  models.common.Conv                      [256, 256, 3, 2]
+ 93      [-1, -3, 51]  1         0  models.common.Concat                    [1]
+ 94                -1  1    525312  models.common.Conv                      [1024, 512, 1, 1]
+ 95                -2  1    525312  models.common.Conv                      [1024, 512, 1, 1]
+ 96                -1  1   1180160  models.common.Conv                      [512, 256, 3, 1]
+ 97                -1  1    590336  models.common.Conv                      [256, 256, 3, 1]
+ 98                -1  1    590336  models.common.Conv                      [256, 256, 3, 1]
+ 99                -1  1    590336  models.common.Conv                      [256, 256, 3, 1]
+100[-1, -2, -3, -4, -5, -6]  1         0  models.common.Concat                    [1]
+101                -1  1   1049600  models.common.Conv                      [2048, 512, 1, 1]
+102                75  1    328704  models.common.RepConv                   [128, 256, 3, 1]
+103                88  1   1312768  models.common.RepConv                   [256, 512, 3, 1]
+104               101  1   5246976  models.common.RepConv                   [512, 1024, 3, 1]
+105   [102, 103, 104]  1     39550  models.yolo.IDetect                     [2, [[12, 16, 19, 36, 40, 28], [36, 75, 76, 55, 72, 146], [142, 110, 192, 243, 459, 401]], [256, 512, 1024]]
+C:\Users\SUBASH\Desktop\Yolo\yolov7\myenv\Lib\site-packages\torch\functional.py:504: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ..\aten\src\ATen\native\TensorShape.cpp:3527.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+Model Summary: 415 layers, 37201950 parameters, 37201950 gradients, 105.1 GFLOPS
+
+Scaled weight_decay = 0.0005
+Optimizer groups: 95 .bias, 95 conv.weight, 98 other
+train: Scanning 'C:\Users\SUBASH\Desktop\Yolo\yolov7\data\train\labels' images and labels... 125 found, 0 missing, 0 em
+train: New cache created: C:\Users\SUBASH\Desktop\Yolo\yolov7\data\train\labels.cache
+val: Scanning 'C:\Users\SUBASH\Desktop\Yolo\yolov7\data\val\labels' images and labels... 27 found, 0 missing, 0 empty,
+val: New cache created: C:\Users\SUBASH\Desktop\Yolo\yolov7\data\val\labels.cache
+
+autoanchor: Analyzing anchors... anchors/target = 3.10, Best Possible Recall (BPR) = 0.9474. Attempting to improve anchors, please wait...
+autoanchor: WARNING: Extremely small objects found. 62 of 1579 labels are < 3 pixels in size.
+autoanchor: Running kmeans for 9 anchors on 1579 points...
+autoanchor: thr=0.25: 0.9943 best possible recall, 4.43 anchors past thr
+autoanchor: n=9, img_size=640, metric_all=0.298/0.694-mean/best, past_thr=0.470-mean: 6,11,  8,26,  23,19,  14,48,  40,37,  25,87,  71,58,  67,158,  115,102
+autoanchor: Evolving anchors with Genetic Algorithm: fitness = 0.7287: 100%|██████| 1000/1000 [00:01<00:00, 946.81it/s]
+autoanchor: thr=0.25: 0.9975 best possible recall, 4.98 anchors past thr
+autoanchor: n=9, img_size=640, metric_all=0.325/0.729-mean/best, past_thr=0.477-mean: 4,9,  5,21,  10,11,  10,31,  23,22,  16,61,  39,38,  71,62,  93,136
+autoanchor: New anchors saved to model. Update model *.yaml to use these anchors in the future.
+
+Image sizes 640 train, 640 test
+Using 4 dataloader workers
+Logging results to runs\train\yolov76
+Starting training for 10 epochs...
+
+     Epoch   gpu_mem       box       obj       cls     total    labels  img_size
+       0/9    0.929G   0.09669   0.02545   0.01671    0.1388        13       640: 100%|█| 32/32 [02:16<00:00,  4.28s/it
+               Class      Images      Labels           P           R      mAP@.5  mAP@.5:.95: 100%|█| 4/4 [00:24<00:00,
+                 all          27         272     0.00111      0.0431    0.000105    1.44e-05
+
+     Epoch   gpu_mem       box       obj       cls     total    labels  img_size
+       1/9     3.96G    0.0945   0.02534   0.01653    0.1364        15       640: 100%|█| 32/32 [01:19<00:00,  2.49s/it
+               Class      Images      Labels           P           R      mAP@.5  mAP@.5:.95: 100%|████████████████████████████████████████████████| 4/4 [00:03<00:00,  1.11it/s]
+                 all          27         272     0.00118      0.0455    0.000133     1.8e-05
+
+     Epoch   gpu_mem       box       obj       cls     total    labels  img_size
+       2/9     3.96G   0.09293   0.02685   0.01628    0.1361        21       640: 100%|██████████████████████████████████████████████████████████| 32/32 [01:19<00:00,  2.48s/it]
+               Class      Images      Labels           P           R      mAP@.5  mAP@.5:.95: 100%|████████████████████████████████████████████████| 4/4 [00:03<00:00,  1.13it/s]
+                 all          27         272     0.00111      0.0431    0.000109    1.42e-05
+
+     Epoch   gpu_mem       box       obj       cls     total    labels  img_size
+       3/9     3.96G   0.09191   0.02506   0.01618    0.1332        25       640: 100%|██████████████████████████████████████████████████████████| 32/32 [01:18<00:00,  2.46s/it]
+               Class      Images      Labels           P           R      mAP@.5  mAP@.5:.95: 100%|████████████████████████████████████████████████| 4/4 [00:03<00:00,  1.13it/s]
+                 all          27         272    0.000997      0.0383    8.68e-05    1.18e-05
+
+     Epoch   gpu_mem       box       obj       cls     total    labels  img_size
+       4/9     3.98G    0.0914   0.02309   0.01598    0.1305         6       640: 100%|██████████████████████████████████████████████████████████| 32/32 [01:18<00:00,  2.44s/it]
+               Class      Images      Labels           P           R      mAP@.5  mAP@.5:.95: 100%|████████████████████████████████████████████████| 4/4 [00:03<00:00,  1.11it/s]
+                 all          27         272    0.000825     0.00478    4.38e-05    5.67e-06
+
+     Epoch   gpu_mem       box       obj       cls     total    labels  img_size
+       5/9     3.98G   0.09113   0.02521   0.01585    0.1322        31       640: 100%|██████████████████████████████████████████████████████████| 32/32 [01:18<00:00,  2.45s/it]
+               Class      Images      Labels           P           R      mAP@.5  mAP@.5:.95: 100%|████████████████████████████████████████████████| 4/4 [00:03<00:00,  1.11it/s]
+                 all          27         272     0.00116      0.0335    0.000119    1.58e-05
+
+     Epoch   gpu_mem       box       obj       cls     total    labels  img_size
+       6/9     3.98G   0.09107   0.02467   0.01579    0.1315        55       640: 100%|██████████████████████████████████████████████████████████| 32/32 [01:18<00:00,  2.46s/it]
+               Class      Images      Labels           P           R      mAP@.5  mAP@.5:.95: 100%|████████████████████████████████████████████████| 4/4 [00:03<00:00,  1.12it/s]
+                 all          27         272     0.00217     0.00239    9.98e-05    1.71e-05
+
+     Epoch   gpu_mem       box       obj       cls     total    labels  img_size
+       7/9     3.98G   0.09013    0.0243   0.01574    0.1302        38       640: 100%|██████████████████████████████████████████████████████████| 32/32 [01:18<00:00,  2.46s/it]
+               Class      Images      Labels           P           R      mAP@.5  mAP@.5:.95: 100%|████████████████████████████████████████████████| 4/4 [00:03<00:00,  1.12it/s]
+                 all          27         272    0.000842      0.0287    7.13e-05    9.04e-06
+
+     Epoch   gpu_mem       box       obj       cls     total    labels  img_size
+       8/9     3.98G   0.09094   0.02479   0.01556    0.1313         8       640: 100%|███████████████████████████████████████████████████████| 32/32 [2:10:46<00:00, 245.20s/it]
+               Class      Images      Labels           P           R      mAP@.5  mAP@.5:.95: 100%|████████████████████████████████████████████████| 4/4 [00:03<00:00,  1.14it/s]
+                 all          27         272     0.00135     0.00478    5.24e-05    7.86e-06
+
+     Epoch   gpu_mem       box       obj       cls     total    labels  img_size
+       9/9     3.98G   0.09026   0.02594   0.01553    0.1317        28       640: 100%|██████████████████████████████████████████████████████████| 32/32 [01:15<00:00,  2.36s/it]
+               Class      Images      Labels           P           R      mAP@.5  mAP@.5:.95: 100%|████████████████████████████████████████████████| 4/4 [00:03<00:00,  1.14it/s]
+                 all          27         272      0.0007      0.0239     4.6e-05    5.94e-06
+              person          27         209      0.0014      0.0478    9.19e-05    1.19e-05
+                 car          27          63           0           0           0           0
+10 epochs completed in 2.413 hours.
+
+Optimizer stripped from runs\train\yolov76\weights\last.pt, 74.8MB
+Optimizer stripped from runs\train\yolov76\weights\best.pt, 74.8MB
+
+(myenv) C:\Users\SUBASH\Desktop\Yolo\yolov7>
